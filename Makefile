@@ -31,7 +31,7 @@ uninstall:
 	rm $(INCLUDE_PATH)/$(LIB_NAME).h
 
 examples: static
-	$(CC) $(CFLAGS) $(LDFLAGS) -o example example.cpp -l$(LIB_NAME)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o example example.cpp -l:lib$(LIB_NAME).a
 	./example
 
 clean:

@@ -21,7 +21,7 @@ int main() {
 	insert(list, 3, 2);
 	print_list(list);
 
-	insert(getele, 3, 2);
+	set_value(get_element(list, 6), 388);
 	print_list(list);
 
 	destroy_list(&list);

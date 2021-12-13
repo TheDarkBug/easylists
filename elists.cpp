@@ -3,9 +3,9 @@
 
 namespace lst {
 
-typedef struct list {
+typedef struct list_s {
 	int value;
-	struct list* next;
+	struct list_s* next;
 } List;
 
 List* create_list(int value) {
@@ -17,7 +17,7 @@ List* create_list(int value) {
 
 void destroy_list(List** list) {
 	if (*list == NULL) {
-		std::cerr << "List is already void!\n";
+		std::cerr << "List is already NULL!\n";
 		return;
 	}
 	List** to_destroy = list;
@@ -73,7 +73,7 @@ void remove_index(List* list, int index) { // work in progress
 	while (counter < index - 1) {
 		counter++;
 		if (list == NULL) {
-			std::cerr << "Error: list " << counter + 1 << " not found!\n";
+			std::cerr << "Error: element " << index << " not found!\n";
 			return;
 		}
 		list = list->next;
@@ -100,7 +100,7 @@ void find_remove(List** list, int value) {
 		found = (plist->next->value == value);
 	}
 	if (!found) {
-		std::cerr << "List with value " << value << " does not exist!\n";
+		std::cerr << "Element with value " << value << " does not exist!\n";
 		return;
 	}
 	if (plist->next->next)
@@ -131,8 +131,8 @@ List* get_element(List* list, int index) {
 	return list;
 }
 
-void set_value(List* element, int value) { list->value = value; }
+void set_value(List* list, int value) { list->value = value; }
 
-int get_value(List* element) { return list->value; }
+int get_value(List* list) { return list->value; }
 
 } // namespace lst

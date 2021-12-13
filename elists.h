@@ -3,7 +3,7 @@
 
 namespace lst {
 // List type. Right now the value must be an integer, might change in future
-typedef struct list List;
+typedef struct list_s List;
 
 // Returns an empty List pointer
 List* create_list(int value);
