@@ -9,7 +9,7 @@ typedef struct element Element;
 Element* create_element(int value);
 
 // Destroys the given list
-void destroy_list(Element* list);
+void destroy_list(Element** list);
 
 // Returns element count of a list
 int get_element_count(Element* list);
@@ -24,7 +24,7 @@ void insert(Element* list, int value, int index);
 void remove_index(Element* list, int index);
 
 // Removes an element in the list that has the given value
-void find_remove(Element* list, int value);
+void find_remove(Element** list, int value);
 
 // Prints the value of all the elements of the list
 void print_list(Element* list);

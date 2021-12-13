@@ -15,25 +15,27 @@ Element* create_element(int value) {
 	return ret_element;
 }
 
-void destroy_list(Element* list) {
-	Element* to_destroy;
-	while (list->next) {
-		// to_destroy = list;
-		*list = *list->next;
-		// free(to_destroy);
-		std::cout << "i";
+void destroy_list(Element** list) {
+	if (*list == NULL) {
+		std::cerr << "List is already void!\n";
+		return;
+	}
+	Element** to_destroy = list;
+	while (*list) {
+		*to_destroy = *list;
+		*list		= (*list)->next;
+		*to_destroy = NULL;
 	}
 	return;
 }
 
 int get_element_count(Element* list) {
-	// int count = 0;
-	// while (list) {
-	// 	count++;
-	// 	list = list->next;
-	// }
-	// return count;
-	return 0;
+	int count = 0;
+	while (list) {
+		count++;
+		list = list->next;
+	}
+	return count;
 }
 
 void append(Element** list, int value) {
@@ -43,17 +45,16 @@ void append(Element** list, int value) {
 }
 
 void insert(Element* list, int value, int index) { // work in progress
-	Element* tmp = list;
-	int counter	 = 0;
+	int counter = 0;
 	while (counter < index) {
 		counter++;
-		tmp = tmp->next;
-		if (tmp == NULL) {
+		list = list->next;
+		if (list == NULL) {
 			std::cerr << "Error while inserting item: the list ends at " << counter << std::endl;
 			return;
 		}
 	}
-	tmp->next = create_element(value);
+	list->next = create_element(value);
 }
 
 void remove_index(Element* list, int index) { // work in progress
@@ -64,11 +65,11 @@ void remove_index(Element* list, int index) { // work in progress
 	}
 	while (counter < index - 1) {
 		counter++;
-		list = list->next;
 		if (list == NULL) {
-			std::cerr << "Error: element " << counter << " not found!\n";
+			std::cerr << "Error: element " << counter + 1 << " not found!\n";
 			return;
 		}
+		list = list->next;
 	}
 	if (list->next->next)
 		list->next = list->next->next;
@@ -76,28 +77,29 @@ void remove_index(Element* list, int index) { // work in progress
 		list->next = NULL;
 }
 
-void find_remove(Element* list, int value) {
-	bool found = (list->value == value);
-
+void find_remove(Element** list, int value) {
+	Element* plist = *list;
+	bool found	   = (plist->value == value);
 	if (found) {
-		if (list->next)
-			*list = *list->next;
-		else
+		if (plist->next)
+			*plist = *plist->next;
+		else {
 			destroy_list(list);
-		return;
+			return;
+		}
 	}
-	while (list->next && !found) {
-		list  = list->next;
-		found = (list->next->value == value);
+	while (plist->next && !found) {
+		plist = plist->next;
+		found = (plist->next->value == value);
 	}
 	if (!found) {
-		std::cerr << "Element with value " << value << " does not exist!";
+		std::cerr << "Element with value " << value << " does not exist!\n";
 		return;
 	}
-	if (list->next->next)
-		*list->next = *list->next->next;
+	if (plist->next->next)
+		*plist->next = *plist->next->next;
 	else
-		list->next = NULL;
+		plist->next = NULL;
 }
 
 void print_list(Element* head) {
@@ -106,10 +108,9 @@ void print_list(Element* head) {
 		return;
 	}
 	std::cout << "[";
-	Element* temp = head;
-	while (temp) {
-		std::cout << temp->value << ", ";
-		temp = temp->next;
+	while (head) {
+		std::cout << head->value << ", ";
+		head = head->next;
 	}
 	std::cout << "\b\b]\n";
 }
