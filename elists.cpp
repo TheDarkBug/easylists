@@ -123,7 +123,10 @@ void print_list(List* head) {
 }
 
 List* get_element(List* list, int index) {
-
+	if (list == NULL) {
+		std::cerr << "List is empty, you must fill it!\n";
+		return NULL;
+	}
 	while (index > 0 && list) {
 		index--;
 		list = list->next;
@@ -131,8 +134,37 @@ List* get_element(List* list, int index) {
 	return list;
 }
 
-void set_value(List* list, int value) { list->value = value; }
+int find(List* list, int value) {
+	int index = 0;
+	if (list == NULL) {
+		std::cerr << "List is empty, you must fill it!\n";
+		return -1;
+	}
+	while (list && !(list->value == value)) {
+		index++;
+		list = list->next;
+	}
+	if (list == NULL) {
+		std::cerr << "Element with value " << value << " does not exist!\n";
+		return -1;
+	}
+	return index;
+}
 
-int get_value(List* list) { return list->value; }
+void set_value(List* element, int value) {
+	if (element == NULL) {
+		std::cerr << "Error: impossible to set a value to a NULL pointer!\n";
+		return;
+	}
+	element->value = value;
+}
+
+int get_value(List* element) {
+	if (element == NULL) {
+		std::cerr << "Error: impossible to get a value from a NULL pointer!\n";
+		return 0;
+	}
+	return element->value;
+}
 
 } // namespace lst

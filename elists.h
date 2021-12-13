@@ -35,11 +35,14 @@ void print_list(List* list);
 // Returns a pointer to the element at the given index
 List* get_element(List* list, int index);
 
+// tries to find the element via the given value
+int find(List* list, int value);
+
 // Sets the value of a given element of a list
-void set_value(List* list, int value);
+void set_value(List* element, int value);
 
 // Returns the value of an element
-int get_value(List* list);
+int get_value(List* element);
 
 } // namespace lst
 

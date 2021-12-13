@@ -4,7 +4,7 @@
 using namespace lst;
 int main() {
 	List* list = NULL;
-	print_list(list);
+	// print_list(list);
 
 	for (int i = 0; i < 10; i++) push(&list, i);
 	print_list(list);
@@ -21,8 +21,10 @@ int main() {
 	insert(list, 3, 2);
 	print_list(list);
 
-	set_value(get_element(list, 6), 388);
+	set_value(get_element(list, 7), 388);
 	print_list(list);
+
+	std::cout << find(list, 0) << std::endl;
 
 	destroy_list(&list);
 	print_list(list);
