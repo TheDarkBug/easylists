@@ -122,8 +122,17 @@ void print_list(List* head) {
 	std::cout << "\b\b]\n";
 }
 
-void set_value(List* list, int value) { list->value = value; }
+List* get_element(List* list, int index) {
 
-int get_value(List* list) { return list->value; }
+	while (index > 0 && list) {
+		index--;
+		list = list->next;
+	}
+	return list;
+}
+
+void set_value(List* element, int value) { list->value = value; }
+
+int get_value(List* element) { return list->value; }
 
 } // namespace lst

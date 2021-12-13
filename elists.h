@@ -14,28 +14,31 @@ void destroy_list(List** list);
 // Returns list count of a list
 int get_list_size(List* list);
 
-// Adds a new list with the given value to the start of the list
+// Adds a new element with the given value to the start of the list
 void push(List** list, int value);
 
-// Inserts a new list with the given value at the given index
+// Inserts a new element with the given value at the given index
 void insert(List* list, int value, int index);
 
-// Adds a new list with the given value to the end of the list
+// Adds a new element with the given value to the end of the list
 void append(List* list, int value);
 
-// Removes an list in the list at the given index
+// Removes an element in the list at the given index
 void remove_index(List* list, int index);
 
-// Removes an list in the list that has the given value
+// Removes an element of the list that has the given value
 void find_remove(List** list, int value);
 
-// Prints the value of all the lists of the list
+// Prints the value of all the elements of the list
 void print_list(List* list);
 
-// Sets the value of a given list
+// Returns a pointer to the element at the given index
+List* get_element(List* list, int index);
+
+// Sets the value of a given element of a list
 void set_value(List* list, int value);
 
-// Returns the value of an list, right now index is useless
+// Returns the value of an element
 int get_value(List* list);
 
 } // namespace lst
