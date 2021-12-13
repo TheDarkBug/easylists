@@ -7,8 +7,8 @@ PLATFORM = $(shell uname)
 
 ifeq ($(PLATFORM), Linux)
 install: shared static
-	sudo cp lib$(LIB_NAME).so /usr/lib
-	sudo cp lib$(LIB_NAME).a /usr/lib
+	cp lib$(LIB_NAME).so /usr/lib
+	cp lib$(LIB_NAME).a /usr/lib
 endif
 
 shared:
