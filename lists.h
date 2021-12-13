@@ -1,6 +1,36 @@
 #ifndef LISTS_H // header guards
 #define LISTS_H
 
-void test_func(int a);
+namespace lst {
+struct element {
+	int value;
+	struct element* next;
+};
+
+// Element type. Right now the value must be an integer, might change in future
+typedef struct element Element;
+
+// Returns an empty Element pointer
+Element* create_element(int value);
+
+// Returns element count of a list
+int get_element_count(Element* list);
+
+// Adds a new element with the given value to the START of the list
+void append(Element** list, int value);
+
+// Inserts a new element with the given value at the given index
+// void insert(Element** list, int value, int index);
+
+// Prints the value of all the elements of the list
+void print_list(Element* list);
+
+// Sets the value of a given element
+void set_value(Element* element, int value);
+
+// Returns the value of an element, right now index is useless
+int get_value(Element* element);
+
+} // namespace lst
 
 #endif // LISTS_H
