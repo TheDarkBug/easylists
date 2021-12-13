@@ -1,8 +1,13 @@
-#include "lists.h"
 #include <iostream>
 #include <string.h>
 
 namespace lst {
+
+typedef struct element {
+	int value;
+	struct element* next;
+} Element;
+
 Element* create_element(int value) {
 	Element* ret_element = (Element*)malloc(sizeof(Element));
 	ret_element->value	 = value;
@@ -10,13 +15,22 @@ Element* create_element(int value) {
 	return ret_element;
 }
 
+void destroy_list(Element* list) {
+	// while (list) {
+	// 	list = list->next;
+	// 	free(list);
+	// }
+	return;
+}
+
 int get_element_count(Element* list) {
-	int count = 0;
-	while (list) {
-		count++;
-		list = list->next;
-	}
-	return count;
+	// int count = 0;
+	// while (list) {
+	// 	count++;
+	// 	list = list->next;
+	// }
+	// return count;
+	return 0;
 }
 
 void append(Element** list, int value) {
@@ -39,46 +53,48 @@ void insert(Element* list, int value, int index) { // work in progress
 	tmp->next = create_element(value);
 }
 
-void remove_index(Element** list, int index) { // work in progress
-	Element* tmp = *list;
-	int counter	 = 0;
-	// if (index == 0) {
-	// 	*list = list->next;
-	// 	return;
-	// }
+void remove_index(Element* list, int index) { // work in progress
+	int counter = 0;
+	if (index == 0) {
+		*list = *list->next;
+		return;
+	}
 	while (counter < index - 1) {
 		counter++;
-		tmp = tmp->next;
-		if (tmp == NULL) {
+		list = list->next;
+		if (list == NULL) {
 			std::cerr << "Error: element " << counter << " not found!\n";
 			return;
 		}
 	}
-	if (tmp->next->next)
-		tmp->next = tmp->next->next;
+	if (list->next->next)
+		list->next = list->next->next;
 	else
-		tmp->next = NULL;
+		list->next = NULL;
 }
 
-void find_remove(Element** list, int value) {
-	Element* tmp = *list;
-	if (tmp->value == value) {
-		// if (tmp->next)
-		// free(tmp);
-		// *tmp = *tmp->next;
-		// else
-		*list = NULL;
+void find_remove(Element* list, int value) {
+	bool found = (list->value == value);
+
+	if (found) {
+		if (list->next)
+			*list = *list->next;
+		else
+			destroy_list(list);
 		return;
 	}
-	while (tmp->next && !(tmp->next->value == value)) tmp = tmp->next;
-	if (!(tmp->next->value == value) && tmp == NULL) {
-		std::cerr << "Element with value " << value << " not found!";
+	while (list->next && !found) {
+		list  = list->next;
+		found = (list->next->value == value);
+	}
+	if (!found) {
+		std::cerr << "Element with value " << value << " does not exist!";
 		return;
 	}
-	if (tmp->next->next)
-		*tmp = *tmp->next->next;
+	if (list->next->next)
+		*list->next = *list->next->next;
 	else
-		tmp->next = NULL;
+		list->next = NULL;
 }
 
 void print_list(Element* head) {
@@ -95,12 +111,8 @@ void print_list(Element* head) {
 	std::cout << "\b\b]\n";
 }
 
-void set_value(Element* element, int value) {
-	element->value = value;
-}
+void set_value(Element* element, int value) { element->value = value; }
 
-int get_value(Element* element) {
-	return element->value;
-}
+int get_value(Element* element) { return element->value; }
 
 } // namespace lst

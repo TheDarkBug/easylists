@@ -2,16 +2,14 @@
 #define LISTS_H
 
 namespace lst {
-struct element {
-	int value;
-	struct element* next;
-};
-
 // Element type. Right now the value must be an integer, might change in future
 typedef struct element Element;
 
 // Returns an empty Element pointer
 Element* create_element(int value);
+
+// Destroys the given list
+void destroy_list(Element* list);
 
 // Returns element count of a list
 int get_element_count(Element* list);
@@ -23,10 +21,10 @@ void append(Element** list, int value);
 void insert(Element* list, int value, int index);
 
 // Removes an element in the list at the given index
-void remove_index(Element** list, int index);
+void remove_index(Element* list, int index);
 
 // Removes an element in the list that has the given value
-void find_remove(Element** list, int value);
+void find_remove(Element* list, int value);
 
 // Prints the value of all the elements of the list
 void print_list(Element* list);
