@@ -1,6 +1,7 @@
 #include "lists.h"
 
+using namespace lst;
 int main() {
-	test_func(100);
+	Element* head = create_element();
 	return 0;
 }
