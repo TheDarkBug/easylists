@@ -9,10 +9,10 @@ typedef struct element {
 } Element;
 
 Element* create_element(int value) {
-	Element* ret_element = (Element*)malloc(sizeof(Element));
-	ret_element->value	 = value;
-	ret_element->next	 = NULL;
-	return ret_element;
+	Element* new_element = (Element*)malloc(sizeof(Element));
+	new_element->value	 = value;
+	new_element->next	 = NULL;
+	return new_element;
 }
 
 void destroy_list(Element** list) {
@@ -29,7 +29,7 @@ void destroy_list(Element** list) {
 	return;
 }
 
-int get_element_count(Element* list) {
+int get_list_size(Element* list) {
 	int count = 0;
 	while (list) {
 		count++;
@@ -38,15 +38,15 @@ int get_element_count(Element* list) {
 	return count;
 }
 
-void append(Element** list, int value) {
-	Element* tmp = create_element(value);
-	tmp->next	 = *list;
-	*list		 = tmp;
+void push(Element** list, int value) {
+	Element* new_element = create_element(value);
+	new_element->next	 = *list;
+	*list				 = new_element;
 }
 
 void insert(Element* list, int value, int index) { // work in progress
 	int counter = 0;
-	while (counter < index) {
+	while (counter < index - 1) {
 		counter++;
 		list = list->next;
 		if (list == NULL) {
@@ -54,7 +54,14 @@ void insert(Element* list, int value, int index) { // work in progress
 			return;
 		}
 	}
-	list->next = create_element(value);
+	Element* new_element = create_element(value);
+	new_element->next	 = list->next;
+	list->next			 = new_element;
+}
+
+void append(Element* list, int value) {
+	Element* new_element = create_element(value);
+	insert(list, value, get_list_size(list));
 }
 
 void remove_index(Element* list, int index) { // work in progress

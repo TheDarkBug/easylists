@@ -12,13 +12,16 @@ Element* create_element(int value);
 void destroy_list(Element** list);
 
 // Returns element count of a list
-int get_element_count(Element* list);
+int get_list_size(Element* list);
 
-// Adds a new element with the given value to the START of the list
-void append(Element** list, int value);
+// Adds a new element with the given value to the start of the list
+void push(Element** list, int value);
 
 // Inserts a new element with the given value at the given index
 void insert(Element* list, int value, int index);
+
+// Adds a new element with the given value to the end of the list
+void append(Element* list, int value);
 
 // Removes an element in the list at the given index
 void remove_index(Element* list, int index);
