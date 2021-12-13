@@ -16,10 +16,13 @@ Element* create_element(int value) {
 }
 
 void destroy_list(Element* list) {
-	// while (list) {
-	// 	list = list->next;
-	// 	free(list);
-	// }
+	Element* to_destroy;
+	while (list->next) {
+		// to_destroy = list;
+		*list = *list->next;
+		// free(to_destroy);
+		std::cout << "i";
+	}
 	return;
 }
 
