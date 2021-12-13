@@ -15,8 +15,7 @@ endif
 all: shared static
 
 shared:
-	$(CC) $(CFLAGS) -c -fpic $(LIB_NAME).cpp
-	$(CC) $(CFLAGS) -shared -o lib$(LIB_NAME).so $(LIB_NAME).o
+	$(CC) $(CFLAGS) -c -fpic -shared $(LIB_NAME).cpp -o lib$(LIB_NAME).so
 
 static:
 	$(CC) $(CFLAGS) -c $(LIB_NAME).cpp
