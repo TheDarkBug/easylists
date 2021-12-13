@@ -1,9 +1,9 @@
-#include "lists.h"
+#include <elists.h>
 #include <iostream>
 
 using namespace lst;
 int main() {
-	Element* list = NULL;
+	List* list = NULL;
 	print_list(list);
 	for (int i = 0; i < 10; i++) push(&list, i);
 	print_list(list);
