@@ -12,6 +12,8 @@ else ifeq ($(PLATFORM), Darwin)
 endif
 .PHONY: examples
 
+all: shared static
+
 shared:
 	$(CC) $(CFLAGS) -c -fpic $(LIB_NAME).cpp
 	$(CC) $(CFLAGS) -shared -o lib$(LIB_NAME).so $(LIB_NAME).o
