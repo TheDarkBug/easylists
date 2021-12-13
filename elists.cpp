@@ -1,8 +1,7 @@
 #include <iostream>
 #include <string.h>
 
-namespace lst {
-
+namespace els {
 typedef struct list_s {
 	int value;
 	struct list_s* next;
@@ -167,4 +166,4 @@ int get_value(List* element) {
 	return element->value;
 }
 
-} // namespace lst
+} // namespace els

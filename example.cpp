@@ -1,7 +1,7 @@
 #include "elists.h"
 #include <iostream>
 
-using namespace lst;
+using namespace els;
 int main() {
 	List* list = NULL;
 	// print_list(list);

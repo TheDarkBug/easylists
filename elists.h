@@ -1,7 +1,7 @@
 #ifndef LISTS_H // header guards
 #define LISTS_H
 
-namespace lst {
+namespace els {
 // List type. Right now the value must be an integer, might change in future
 typedef struct list_s List;
 
@@ -44,6 +44,6 @@ void set_value(List* element, int value);
 // Returns the value of an element
 int get_value(List* element);
 
-} // namespace lst
+} // namespace els
 
 #endif // LISTS_H
