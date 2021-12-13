@@ -3,7 +3,7 @@
 
 using namespace els;
 int main() {
-	List* list = NULL;
+	List* list;
 	// print_list(list);
 
 	for (int i = 0; i < 10; i++) push(&list, i);

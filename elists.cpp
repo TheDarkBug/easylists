@@ -1,16 +1,18 @@
 #include <iostream>
-#include <string.h>
 
 namespace els {
 typedef struct list_s {
 	int value;
 	struct list_s* next;
+	void List() {
+		value = 0;
+		next  = NULL;
+	}
 } List;
 
 List* create_list(int value) {
 	List* new_list	= (List*)malloc(sizeof(List));
 	new_list->value = value;
-	new_list->next	= NULL;
 	return new_list;
 }
 
